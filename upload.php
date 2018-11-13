@@ -1,9 +1,9 @@
 <?php
 /* データベース設定諸々 */
-$db_name = 'JapanAddress';
-$host = 'localhost';
-$usr = 'root';
-$passwd = 'hogehoge';
+$db_name = 'DBname';
+$host = 'host';
+$usr = 'username';
+$passwd = 'password';
 function getDb($db_name, $host, $usr, $passwd){
   try{
     $db = new PDO("mysql:dbname={$db_name}; host={$host}; charset=utf8;", $usr, $passwd);
@@ -80,7 +80,7 @@ if(empty($tables)){
     touch("{$sqlFilePath}");
     $a = fopen("$sqlFilePath", "w");
     if($a == null){
-      echo "やっちまった。";
+      echo "やっちまったな。";
       exit;
     }
     $r = fwrite($a, " truncate table `{$table_name}`; LOAD DATA LOCAL INFILE '{$encFilePath}' INTO TABLE `{$table_name}` FIELDS TERMINATED BY ',' ENCLOSED BY '".'"'."' (PostNum, PrefectureKana, CityKana, TownKana, Prefecture, City, Town, systime); ");
